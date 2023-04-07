@@ -1,0 +1,27 @@
+#!/bin/bash
+
+JAVA_VERSION=17
+
+
+function setupJDK() {
+    echo ------------ Setup JDK 17 ------------
+
+    for path in ~/java/*
+    do
+	    if [[ $(echo $path | grep $JAVA_VERSION) != "" ]]
+        then
+            if [[ -e $path ]]
+            then
+		        rm ~/java/current
+            fi
+		    ln -s $path ~/java/current
+
+            echo "JDK Path: $path"
+            echo "$(java --version)"
+	    fi
+    done
+
+    echo ------------ Setup JDK 17 ------------
+}
+
+setupJDK
